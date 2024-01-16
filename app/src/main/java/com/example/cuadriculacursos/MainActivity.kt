@@ -57,10 +57,14 @@ fun CuadriculaCursosApp() {
 @Composable
 fun TopicList(topicList: List<Topic>, modifier: Modifier = Modifier) {
     LazyVerticalGrid(
+        //DOS COLUMNAS
         columns= GridCells.Fixed(2),
+
+        //PADDING VERTICAL, HORIZONTAL Y EXTERIOR
         verticalArrangement = Arrangement.spacedBy(8.dp),
         horizontalArrangement = Arrangement.spacedBy(8.dp),
         contentPadding = PaddingValues(8.dp),
+
         modifier = modifier
     ) {
         items(topicList) {topic ->
@@ -70,12 +74,6 @@ fun TopicList(topicList: List<Topic>, modifier: Modifier = Modifier) {
                 //modifier = Modifier.padding(8.dp)
             )
         }
-        /*items(items = topicList,
-            itemContent = {topic -> TopicCard(
-                topic = topic,
-                modifier = Modifier.padding(8.dp))
-            }
-        )*/
     }
 }
 
@@ -98,6 +96,8 @@ fun TopicCard(topic: Topic, modifier: Modifier = Modifier) {
                 Text(
                     text = stringResource(topic.descriptionResourceId),
                     modifier = Modifier.padding(bottom = 8.dp),
+
+                    //USAMOS LA TIPOGRAFÍA DEL TEMA DE LA APP
                     style = MaterialTheme.typography.bodyMedium
                 )
                 Row{
