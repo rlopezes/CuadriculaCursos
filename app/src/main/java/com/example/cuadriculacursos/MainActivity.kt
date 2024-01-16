@@ -4,7 +4,9 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
@@ -21,6 +23,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
@@ -55,12 +58,16 @@ fun CuadriculaCursosApp() {
 fun TopicList(topicList: List<Topic>, modifier: Modifier = Modifier) {
     LazyVerticalGrid(
         columns= GridCells.Fixed(2),
+        verticalArrangement = Arrangement.spacedBy(8.dp),
+        horizontalArrangement = Arrangement.spacedBy(8.dp),
+        contentPadding = PaddingValues(8.dp),
         modifier = modifier
     ) {
         items(topicList) {topic ->
             TopicCard(
-                topic = topic,
-                modifier = Modifier.padding(8.dp)
+                topic = topic
+                //igual que usar contentPadding
+                //modifier = Modifier.padding(8.dp)
             )
         }
         /*items(items = topicList,
@@ -100,7 +107,13 @@ fun TopicCard(topic: Topic, modifier: Modifier = Modifier) {
                     )
                     Text(
                         text = topic.courses.toString(),
-                        modifier = Modifier.padding(start=8.dp),
+
+                        //USANDO FICHERO EXTERNO DE DIMENSIONES
+                        modifier = Modifier.padding(start=dimensionResource(R.dimen.padding_small)),
+
+                        //SIN USAR FICHERO EXTERNO DE DIMENSIONES
+                        //modifier = Modifier.padding(start=8.dp),
+
                         style = MaterialTheme.typography.labelMedium
                     )
                 }
